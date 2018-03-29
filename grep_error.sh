@@ -1,18 +1,18 @@
 #!/bin/bash
 
 # input validation
-numtest='^[^0-9]+$'
-if [ "$#" -lt 3 ] || [[ $2 =~ $numtest ]]; then
-	echo "Usage: bash grep_error <path> <max seconds backtrack> <regrex>"
-	exit 1
-fi
-if [ ! -e "$1" ]; then 
-	echo "File does not exist"
-	exit 1
-fi
+NUMTEST='^[^0-9]+$'
 FILEPATH=$1
 MAXSECONDS=$2
 REGEX=$3
+if [ "$#" -lt 3 ] || [[ $MAXSECONDS =~ $NUMTEST ]]; then
+	echo "Usage: bash grep_error <path> <max seconds backtrack> <regrex>"
+	exit 1
+fi
+if [ ! -e "$FILEPATH" ]; then 
+	echo "File does not exist"
+	exit 1
+fi
 
 NOW=$(date +%s)
 # Get all rows matching regular expression then process line by line
